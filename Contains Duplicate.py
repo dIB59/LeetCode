@@ -1,10 +1,6 @@
-def containsDuplicate(nums):
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
 
-    for i in nums:
+        if len(set(nums)) < len(nums):
 
-        print(i)
-
-
-nums = [2,14,18,22,22,22]
-
-containsDuplicate(nums)
+            return True
