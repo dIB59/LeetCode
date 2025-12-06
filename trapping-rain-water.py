@@ -3,12 +3,23 @@ from typing import List
 
 class Solution:
     def trap(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        left_max = 0
+        right_max = 0
         total = 0
-        n = len(height)
 
-        for current in range(n):
-            left_max = max(height[:current+1])
-            right_max = max(height[current:])
+        while left < right:
+            if height[left] < height[right]:
+                if height[left] >= left_max:
+                    left_max = height[left]
+                else:
+                    total += left_max - height[left]
+                left += 1
+            else:
+                if height[right] >= right_max:
+                    right_max = height[right]
+                else:
+                    total += right_max - height[right]
+                right -= 1
 
-            total += min(left_max, right_max) - height[current]
         return total
